@@ -23,7 +23,7 @@ const Header = () => {
               href='/'
               className='text-2xl font-bold tracking-widest'
             >
-              Modules.shop
+              Modules.Shop
             </Link>
           </div>
 
