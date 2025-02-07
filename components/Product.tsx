@@ -7,10 +7,29 @@ import { useSWRConfig } from 'swr'
 import clsx from 'clsx'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { formatCurrency } from '@/lib/utils'
-import { addToCart } from '@/lib/swell/cart'
+//import { addToCart } from '@/lib/swell/cart'
 import { Blinker } from '@/components/ui/Loading'
 
-const Product = ({ product }) => {
+import { FC } from 'react'
+
+interface ProductProps {
+  product: {
+    id: string;
+    name: string;
+    price: number;
+    rating: number;
+    description: string;
+    images: {
+      id: string;
+      file: {
+        url: string;
+        metadata: string;
+      };
+    }[];
+  };
+}
+
+const Product: FC<ProductProps> = ({ product }) => {
   const router = useRouter()
   const { mutate } = useSWRConfig()
   const [isPending, startTransition] = useTransition()
@@ -18,13 +37,13 @@ const Product = ({ product }) => {
 
   const isMutating = loading || isPending
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
     setLoading(true)
-    await addToCart({
+    /*await addToCart({
       product_id: product.id,
       quantity: 1
-    })
+    })*/
     setLoading(false)
     mutate('cart')
     startTransition(() => {
@@ -41,7 +60,7 @@ const Product = ({ product }) => {
           <div className='flex flex-col-reverse'>
             <div className='mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none'>
               <div className='grid grid-cols-4 gap-6'>
-                {product.images.map(image => (
+                {product.images.map((image) => (
                   <button
                     key={image.id}
                     className='relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-stone-900 hover:bg-stone-50 focus:outline-none'
