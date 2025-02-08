@@ -27,9 +27,15 @@ const Header = () => {
             </Link>
           </div>
 
-          <ul className='flex items-center gap-10'>
+          <ul className='flex items-center gap-14'>
             <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/products'>Courses</Link>
+            </li>
+            <li className='text-sm font-medium uppercase tracking-wider'>
+              <Link href='/blog'>Blog</Link>
+            </li>
+            <li className='text-sm font-medium uppercase tracking-wider'>
+              <Link href='/faq'>FAQ</Link>
             </li>
           </ul>
 
