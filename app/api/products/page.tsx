@@ -17,7 +17,7 @@ interface ProductType {
 }
 
 const fetchProducts = async (page: number): Promise<{ results: ProductType[] }> => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'; // Adjust for your API base
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'; 
   const response = await fetch(`${baseUrl}/api/products?page=${page}`);
 
   if (!response.ok) {
