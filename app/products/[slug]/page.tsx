@@ -1,6 +1,6 @@
 import Product from '@/components/Product'
 
-interface ProductType {
+/*interface ProductType {
   id: string;
   name: string;
   price: number;
@@ -16,8 +16,9 @@ interface ProductType {
 }
 
 const fetchProductBySlug = async (slug: string): Promise<ProductType> => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'; // Adjust for your API base
-  const response = await fetch(`${baseUrl}/api/products/${slug}`);
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'; 
+  const response = await fetch(`${baseUrl}/products/${slug}`);
+  
   if (!response.ok) {
     throw new Error('Failed to fetch product');
   }
@@ -30,4 +31,5 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return <Product product={product} />;
 };
 
-export default Page;
+export default Page;*/
+

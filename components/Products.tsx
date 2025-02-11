@@ -2,6 +2,7 @@ import { formatCurrency } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 
+
 const products = [
   {
     name: 'HTML - Course for Beginners',
@@ -115,20 +116,28 @@ const products = [
 
 ]
 
-interface Product {
+interface ProductType {
   id: string;
-  slug: string;
-  images: { file: { url: string } }[];
-  description: string;
   name: string;
   price: number;
+  rating: number;
+  slug: string;
+  description: string;
+  images: {
+    id: string;
+    file: {
+      url: string;
+      metadata: string;
+    };
+  }[];
 }
 
 interface ProductsProps {
-  products: Product[];
+  products: ProductType[];
 }
 
-const Products = ({ products }: ProductsProps) => {
+//const Products = ({ products }: ProductsProps) => {
+ const Products: React.FC<ProductsProps> = ({ products }) => {
   return (
     <div className='py-24'>
       <div className='container'>
@@ -162,3 +171,6 @@ const Products = ({ products }: ProductsProps) => {
 }
 
 export default Products
+
+
+

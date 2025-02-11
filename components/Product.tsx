@@ -12,21 +12,23 @@ import { Blinker } from '@/components/ui/Loading'
 
 import { FC } from 'react'
 
-interface ProductProps {
-  product: {
+interface ProductType {
+  id: string;
+  name: string;
+  price: number;
+  rating: number;
+  description: string;
+  images: {
     id: string;
-    name: string;
-    price: number;
-    rating: number;
-    description: string;
-    images: {
-      id: string;
-      file: {
-        url: string;
-        metadata: string;
-      };
-    }[];
-  };
+    file: {
+      url: string;
+      metadata: string;
+    };
+  }[];
+}
+
+interface ProductProps {
+  product: ProductType;
 }
 
 const Product: FC<ProductProps> = ({ product }) => {
