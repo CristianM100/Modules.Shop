@@ -115,7 +115,6 @@ const products = [
   },
 
 ]
-
 interface ProductType {
   id: string;
   name: string;
@@ -136,8 +135,7 @@ interface ProductsProps {
   products: ProductType[];
 }
 
-//const Products = ({ products }: ProductsProps) => {
- const Products: React.FC<ProductsProps> = ({ products }) => {
+const Products: React.FC<ProductsProps> = ({ products  }) => {
   return (
     <div className='py-24'>
       <div className='container'>
@@ -167,10 +165,7 @@ interface ProductsProps {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Products
-
-
-
+export default Products;
