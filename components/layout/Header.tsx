@@ -21,13 +21,13 @@ const Header = () => {
           <div>
             <Link
               href='/'
-              className='text-2xl font-bold tracking-widest'
+              className='text-black text-2xl font-bold tracking-widest'
             >
               Modules.Shop
             </Link>
           </div>
 
-          <ul className='flex items-center gap-14'>
+          <ul className='text-black flex items-center gap-14'>
             <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/products'>Courses</Link>
             </li>
@@ -57,7 +57,7 @@ const Header = () => {
             </SignedIn>
             <SignedOut>
               <SignInButton mode='modal'>
-                <button className='rounded border border-gray-400 px-3 py-0.5'>
+                <button className='text-black rounded border border-gray-400 px-3 py-0.5'>
                   Sign in
                 </button>
               </SignInButton>
