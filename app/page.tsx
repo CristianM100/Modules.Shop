@@ -8,11 +8,11 @@ const Page = () => {
       <div className='relative isolate h-full overflow-hidden pt-14'>
         <div
           aria-hidden='true'
-          className='fixed inset-0 -z-10 bg-black/90 bg-blend-multiply'
+          className='fixed inset-0 -z-10 bg-black-400 bg-blend-multiply'
         />
         <div className='mx-auto max-w-2xl py-32 px-4 sm:py-48 md:px-6 lg:py-56 xl:px-8'>
           <div className='text-center'>
-            <h1 className='text-4xl font-bold tracking-tight text-white sm:text-6xl'>
+            <h1 className='text-4xl font-bold tracking-tight text-black sm:text-6xl'>
               Online Programming Courses
             </h1>
             <p className='mt-6 text-lg leading-8 text-stone-300'>
