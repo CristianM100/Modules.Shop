@@ -32,6 +32,9 @@ const Header = () => {
               <Link href='/products'>Courses</Link>
             </li>
             <li className='text-sm font-medium uppercase tracking-wider'>
+              <Link href='/features'>Features</Link>
+            </li>
+            <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/blog'>Blog</Link>
             </li>
             <li className='text-sm font-medium uppercase tracking-wider'>
