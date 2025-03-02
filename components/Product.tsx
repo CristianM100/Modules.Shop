@@ -9,6 +9,7 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { formatCurrency } from '@/lib/utils'
 //import { addToCart } from '@/lib/swell/cart'
 import { Blinker } from '@/components/ui/Loading'
+
 import { FC } from 'react'
 
 interface ProductType {
@@ -25,9 +26,11 @@ interface ProductType {
     };
   }[];
 }
+
 interface ProductProps {
   product: ProductType;
 }
+
 const Product: FC<ProductProps> = ({ product }) => {
   const router = useRouter()
   const { mutate } = useSWRConfig()
@@ -39,12 +42,19 @@ const Product: FC<ProductProps> = ({ product }) => {
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
     setLoading(true)
+    /*await addToCart({
+      product_id: product.id,
+      quantity: 1
+    })*/
+    setLoading(false)
     mutate('cart')
     startTransition(() => {
       router.refresh()
     })
   }
+
   const [selectedImage, setSelectedImage] = useState(product.images[0])
+
   return (
     <section className='py-24'>
       <div className='container'>
@@ -78,6 +88,7 @@ const Product: FC<ProductProps> = ({ product }) => {
                 ))}
               </div>
             </div>
+
             <div className='aspect-w-1 aspect-h-1 w-full'>
               <Image
                 fill
@@ -87,6 +98,7 @@ const Product: FC<ProductProps> = ({ product }) => {
               />
             </div>
           </div>
+
           <div className='mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0'>
             <h1 className='text-3xl font-bold tracking-tight text-stone-900'>
               {product.name}
@@ -121,11 +133,13 @@ const Product: FC<ProductProps> = ({ product }) => {
 
             <div className='mt-6'>
               <h3 className='sr-only'>Description</h3>
+
               <div
                 className='space-y-6 text-base text-stone-700'
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
+
             <form className='mt-6' onSubmit={handleSubmit}>
               <div className='sm:flex-col1 mt-10 flex'>
                 <button
@@ -143,4 +157,5 @@ const Product: FC<ProductProps> = ({ product }) => {
     </section>
   )
 }
+
 export default Product
