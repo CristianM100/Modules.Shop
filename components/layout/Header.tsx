@@ -28,6 +28,9 @@ const Header = () => {
           </div>
 
           <ul className='text-black flex items-center gap-14'>
+          <li className='text-sm font-medium uppercase tracking-wider'>
+              <Link href='/'>Home</Link>
+            </li>
             <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/products'>Courses</Link>
             </li>
