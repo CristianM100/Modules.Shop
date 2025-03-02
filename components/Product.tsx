@@ -91,7 +91,8 @@ const Product: FC<ProductProps> = ({ product }) => {
 
             <div className='aspect-w-1 aspect-h-1 w-full'>
               <Image
-                fill
+                width={50}
+                height={50}
                 src={selectedImage.file.url}
                 alt={selectedImage.file.metadata || ''}
                 className='h-full w-full object-cover object-center sm:rounded-lg'
