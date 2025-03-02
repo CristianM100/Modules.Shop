@@ -7,6 +7,7 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -44,6 +45,7 @@ export default {
       },
     },
   },
+  
   plugins: [
     /*require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
