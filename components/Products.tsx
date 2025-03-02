@@ -45,6 +45,8 @@ const Products: React.FC<ProductsProps> = ({ products }) => {
                       src={product.images[0].file.url}
                       alt={product.description}
                       fill
+                      //width={50}
+                     // height={50}
                       className="object-cover object-center transition-opacity group-hover:opacity-75"
                     />
                   ) : (
