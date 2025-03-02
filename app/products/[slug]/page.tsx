@@ -10,6 +10,7 @@ export interface ProductType {
   slug: string;
   description: string;
   product:string;
+  //params: Promise<{ slug : string }>;
   images: {
     id: string;
     file: {
@@ -24,16 +25,32 @@ export interface ProductProps {
 
 }
 
-async function fetchProductBySlug(): Promise<ProductType> { 
-  const response = await fetch(`http://localhost:3000/api/products`);
+interface PageProps {
+    params: Promise<{ slug : string }>;
+} 
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch product');
-  }
+const getProductBySlugOrId = async (slug: string) => {
+  const response = await fetch(`http://localhost:3000/api/products/${slug}`);
 
   return response.json();
-}
+};
 
+const Page = async ({ params }: PageProps) => {
+  const resolvedParams = await params; 
+  const product = await getProductBySlugOrId(resolvedParams.slug);
+
+  return <Product product={product} />;
+};
+
+export default Page;
+
+
+
+
+
+
+
+/*
 const Page = async ({ }: { params: { slug: string } }) => {
   const product = await fetchProductBySlug();
 
@@ -44,7 +61,7 @@ const Page = async ({ }: { params: { slug: string } }) => {
   );
 };
 
-export default Page;
+export default Page;*/
 
 
 
