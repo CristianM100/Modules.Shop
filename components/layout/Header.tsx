@@ -1,18 +1,18 @@
-'use client'
+//'use client'
 
+import { UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 //import { useState } from 'react'
 import Link from 'next/link'
-//import useSWR from 'swr'
-//import CartSlider from '@/components/cart-slider'
+//import CartSlider from '@/components/CartSlider'
 //import { getCart } from '@/lib/swell/cart'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { SignInButton, UserButton } from '@clerk/nextjs'
 //import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client'//
-import { SignedIn, SignedOut } from '@clerk/nextjs'
 
 const Header = () => {
   //const { data: cart, isLoading } = useSWR('cart', getCart)
-  //const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
+//const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
+  const { userId } = auth();
 
   return (
     <>
@@ -52,22 +52,34 @@ const Header = () => {
             >
               <ShoppingCartIcon className='h-7 w-7' />
 
-             {/* {cart?.item_quantity ? (
+              {/*{cart?.item_quantity ? (
                 <span className='flex h-5 w-5 items-center justify-center rounded bg-sky-600 text-xs font-medium text-white'>
                   {cart?.item_quantity}
                 </span>
               ) : null}*/}
             </button>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            <SignedOut>
-              <SignInButton mode='modal'>
-                <button className='text-black rounded border border-gray-400 px-3 py-0.5'>
-                  Sign in
-                </button>
-              </SignInButton>
-            </SignedOut>
+            <div className="flex gap-6 items-center">
+              {!userId ? (
+                <>
+                  <Link href="/sign-in">
+                    <li>Login</li>
+                  </Link>
+                  <Link href="/sign-up">
+                    <li>Sign Up</li>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/profile">
+                    <li>Profile</li>
+                  </Link>
+                  <li className="flex items-center">
+                    <UserButton />
+                  </li>
+                </>
+              )}
+            </div>  
+
           </div>
         </nav>
       </header>
