@@ -6,7 +6,7 @@ interface Params {
   slug: string;
 }
 
-export async function GET(req: Request, { params }: { params: Params }) {
+export async function GET(req: Request, { params }: { params: Params }): Promise<NextResponse> {
   try {
     await dbConnect();
 
