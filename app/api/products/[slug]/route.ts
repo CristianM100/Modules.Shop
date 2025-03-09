@@ -10,7 +10,7 @@ export async function GET(req: Request, { params }: { params: Params }) {
   try {
     await dbConnect();
 
-    const { slug } = await params; 
+    const { slug } = params; 
 
     const product = await Product.findOne({ slug });
 
