@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.11.1",
+    "@clerk/themes": "^2.2.20",
     "@heroicons/react": "^2.2.0",
     "autoprefixer": "^10.4.20",
     "body-parser": "^1.20.3",
@@ -19,6 +20,7 @@
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "svix": "^1.61.3",
     "swr": "^2.3.2"
   },
   "devDependencies": {
