@@ -2,15 +2,16 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/lib/models/Product';
 
+
 interface Params {
   slug: string;
 }
 
-export async function GET(req: Request, { params }: { params: Params }): Promise<NextResponse> {
+export async function GET(req: Request, { params }: { params: Params }) {
   try {
     await dbConnect();
 
-    const { slug } = params; 
+    const { slug } = await params; 
 
     const product = await Product.findOne({ slug });
 
