@@ -2,18 +2,20 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/lib/models/Product';
 
+import { NextRequest } from 'next/server';
 
 
 
-interface Params {
-  slug: string;
-}
-
-export async function GET(req: Request, context: { params: Params }) {
+export async function GET(req: NextRequest, context: { params: { slug: string } }) {
   try {
     await dbConnect();
 
-    const { slug } = context.params; // Fix: correctly accessing params
+    // Validate that `params` and `slug` exist
+    if (!context.params?.slug) {
+      return NextResponse.json({ message: 'Invalid request' }, { status: 400 });
+    }
+
+    const { slug } = context.params;
 
     const product = await Product.findOne({ slug });
 
@@ -30,6 +32,7 @@ export async function GET(req: Request, context: { params: Params }) {
     );
   }
 }
+
 
 
 /*
