@@ -7,12 +7,11 @@ import Link from 'next/link'
 //import CartSlider from '@/components/CartSlider'
 //import { getCart } from '@/lib/swell/cart'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-//import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client'//
 
-const Header = () => {
+const Header = async () => {
   //const { data: cart, isLoading } = useSWR('cart', getCart)
 //const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
-  const { userId } = auth();
+  const { userId } = await auth();
 
   return (
     <>
