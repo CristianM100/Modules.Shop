@@ -3,7 +3,9 @@
 
 //import User from "@/lib/models/user.modal";
 import User from "@/modals/user.modal";
+//import User from "@/modals/user.modal";
 import { connect } from "@/db";
+//import dbConnect from "@/lib/dbConnect"
 
 
 export async function createUser(user: any) {
