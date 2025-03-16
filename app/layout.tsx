@@ -36,7 +36,6 @@ export default function RootLayout({
             <Header />
               {/*<main className='grow'>{children}</main>*/}
               {children}
-            <Footer />
         </ClerkLoaded>
       </body>
     </html>

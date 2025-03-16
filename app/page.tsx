@@ -1,4 +1,8 @@
 import Link from 'next/link'
+import FeaturesPage from './features/page'
+import BlogPage from './blog/page'
+import FAQPage from './faq/page'
+import Footer from '@/components/layout/Footer'
 
 
 export default async function Home() {
@@ -34,6 +38,10 @@ export default async function Home() {
             </div>
           </div>
         </div>
+        <FeaturesPage />
+        <BlogPage />
+        <FAQPage />
+        <Footer />
       </section>
     )
 }

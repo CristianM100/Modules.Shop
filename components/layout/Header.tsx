@@ -1,17 +1,18 @@
-//'use client'
+'use client'
 
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
-//import { useState } from 'react'
+import { useAuth } from "@clerk/nextjs";
+import { useState } from 'react'
 import Link from 'next/link'
-//import CartSlider from '@/components/CartSlider'
-//import { getCart } from '@/lib/swell/cart'
+import CartSlider from '@/components/CartSlider'
+import { getCart } from '@/lib/getCart'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
-const Header = async () => {
-  //const { data: cart, isLoading } = useSWR('cart', getCart)
-//const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
-  const { userId } = await auth();
+const Header = () => {
+  const { data: cart, isLoading } = useSWR('cart', getCart)
+const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
+  const { userId } = useAuth();
 
   return (
     <>
@@ -47,15 +48,15 @@ const Header = async () => {
           <div className='flex items-center justify-between gap-6'>
             <button
               className='flex items-center gap-x-2 pl-4'
-             // onClick={() => setCartSliderIsOpen(open => !open)}
+              onClick={() => setCartSliderIsOpen(open => !open)}
             >
               <ShoppingCartIcon className='h-7 w-7' />
 
-              {/*{cart?.item_quantity ? (
+              {cart?.item_quantity ? (
                 <span className='flex h-5 w-5 items-center justify-center rounded bg-sky-600 text-xs font-medium text-white'>
                   {cart?.item_quantity}
                 </span>
-              ) : null}*/}
+              ) : null}
             </button>
             <div className="flex gap-6 items-center">
               {!userId ? (
@@ -82,12 +83,12 @@ const Header = async () => {
           </div>
         </nav>
       </header>
-      {/*<CartSlider
+      <CartSlider
         cart={cart}
         cartIsLoading={isLoading}
         open={cartSliderIsOpen}
         setCartSliderIsOpen={setCartSliderIsOpen}
-      />*/}
+      />
     </>
   )
 }
