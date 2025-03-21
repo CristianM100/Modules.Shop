@@ -7,9 +7,8 @@ import { useSWRConfig } from 'swr'
 import clsx from 'clsx'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { formatCurrency } from '@/lib/utils'
-//import { addToCart } from '@/lib/swell/cart'
+import { addToCart } from '@/lib/Cart'
 import { Blinker } from '@/components/ui/Loading'
-
 import { FC } from 'react'
 
 interface ProductType {
@@ -17,7 +16,13 @@ interface ProductType {
   name: string;
   price: number;
   rating: number;
+  slug: string;
   description: string;
+  product: {
+    name: string;
+    slug: string;
+    images: { file: { url: string } }[];
+  },
   images: {
     id: string;
     file: {
@@ -31,6 +36,20 @@ interface ProductProps {
   product: ProductType;
 }
 
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  price_total: number; 
+  slug: string;
+  product: {
+    name: string;
+    slug: string;
+    images: { file: { url: string } }[];
+  };
+}
+
 const Product: FC<ProductProps> = ({ product }) => {
   const router = useRouter()
   const { mutate } = useSWRConfig()
@@ -40,18 +59,31 @@ const Product: FC<ProductProps> = ({ product }) => {
   const isMutating = loading || isPending
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
-    event.preventDefault()
-    setLoading(true)
-    /*await addToCart({
-      product_id: product.id,
-      quantity: 1
-    })*/
-    setLoading(false)
-    mutate('cart')
+    event.preventDefault();
+    setLoading(true);
+    
+    const cartItem: CartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      price_total: product.price * 1, 
+      slug: product.slug, 
+      product: {
+        name: product.name,
+        slug: product.slug,
+        images: product.images,
+      },
+    };
+    
+    await addToCart(cartItem); 
+    setLoading(false);
+    mutate('cart');
     startTransition(() => {
-      router.refresh()
-    })
-  }
+      router.refresh();
+    });
+  };
+    
 
   const [selectedImage, setSelectedImage] = useState(product.images[0])
 
