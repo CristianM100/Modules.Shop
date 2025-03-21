@@ -1,18 +1,21 @@
 'use client'
 
 import { UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
 import { useAuth } from "@clerk/nextjs";
 import { useState } from 'react'
 import Link from 'next/link'
+import useSWR from 'swr'
 import CartSlider from '@/components/CartSlider'
-import { getCart } from '@/lib/getCart'
+import { getCart, Cart } from '@/lib/Cart'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
 const Header = () => {
-  const { data: cart, isLoading } = useSWR('cart', getCart)
-const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
+  const { data: cart, isLoading } = useSWR<Cart | null>('cart', getCart, { fallbackData: null })
+  const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
   const { userId } = useAuth();
+
+  const safeCart = cart ?? null;
+
 
   return (
     <>
@@ -28,7 +31,7 @@ const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
           </div>
 
           <ul className='text-black flex items-center gap-14'>
-          <li className='text-sm font-medium uppercase tracking-wider'>
+            <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/'>Home</Link>
             </li>
             <li className='text-sm font-medium uppercase tracking-wider'>
@@ -52,9 +55,9 @@ const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
             >
               <ShoppingCartIcon className='h-7 w-7' />
 
-              {cart?.item_quantity ? (
+              {cart?.items.length ? (
                 <span className='flex h-5 w-5 items-center justify-center rounded bg-sky-600 text-xs font-medium text-white'>
-                  {cart?.item_quantity}
+                  {cart.items.length}
                 </span>
               ) : null}
             </button>
@@ -78,13 +81,12 @@ const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
                   </li>
                 </>
               )}
-            </div>  
-
+            </div>
           </div>
         </nav>
       </header>
       <CartSlider
-        cart={cart}
+        cart={safeCart}
         cartIsLoading={isLoading}
         open={cartSliderIsOpen}
         setCartSliderIsOpen={setCartSliderIsOpen}
@@ -94,3 +96,11 @@ const [cartSliderIsOpen, setCartSliderIsOpen] = useState(false)
 }
 
 export default Header
+
+
+
+
+
+
+
+
