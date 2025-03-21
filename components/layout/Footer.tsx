@@ -7,7 +7,7 @@ const Footer = () => {
             &copy; 2025
           </p>
           <div className='text-sm text-stone-400'>
-            Created by Cristian Marinescu and Diwash Bhandari
+            Created by Cristian Marinescu
           </div>
         </div>
       </footer>
