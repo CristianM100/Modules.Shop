@@ -32,6 +32,7 @@ const OrderConfirmationPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Extracted orderId:", orderId); // Debugging
     if (!orderId) return;
 
     const fetchOrder = async () => {
@@ -78,28 +79,32 @@ const OrderConfirmationPage = () => {
 
         <div className="mb-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Order Summary</h2>
-          <ul className="divide-y divide-gray-200">
-            {order.cart.map((item) => (
-              <li key={item.id} className="py-2 flex justify-between">
-                <span>{item.product.name} (x{item.quantity})</span>
-                <span>{formatCurrency({ amount: item.price_total })}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4 flex justify-between text-base font-medium text-gray-900">
-            <p>Total</p>
-            <p>{formatCurrency({ amount: order.total })}</p>
-          </div>
+            {order?.cart?.length ? (
+                <ul className="divide-y divide-gray-200">
+                    {order.cart.map((item) => (
+                        <li key={item.id} className="py-2 flex justify-between">
+                            <span>{item.product.name} (x{item.quantity})</span>
+                            <span>{formatCurrency({ amount: item.price_total })}</span>
+                            </li>
+                    ))}
+                </ul>
+                ) : (
+                    <p className="text-gray-500">No items in this order.</p>
+            )}
+            <div className="mt-4 flex justify-between text-base font-medium text-gray-900">
+                <p>Total</p>
+                <p>{formatCurrency({ amount: order.total })}</p>
+            </div>
         </div>
 
-        <div className="mb-6">
+        {/*<div className="mb-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Shipping Information</h2>
           <p>{order.shippingInfo.fullName}</p>
           <p>{order.shippingInfo.address}</p>
           <p>
             {order.shippingInfo.city}, {order.shippingInfo.postalCode}, {order.shippingInfo.country}
           </p>
-        </div>
+        </div>*/}
 
         <div className="text-center">
           <Link href="/" className="text-cyan-600 hover:text-cyan-500">
