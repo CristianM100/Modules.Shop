@@ -1,4 +1,5 @@
-'use client';
+"use client";
+
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -10,6 +11,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { getCart } from '@/lib/Cart';
 import { formatCurrency } from '@/lib/utils';
 import { Blinker } from '@/components/ui/Loading';
+import { useUser } from "@clerk/nextjs";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -47,6 +49,10 @@ const CheckoutForm = ({ cart, shippingInfo }: { cart: Cart; shippingInfo: Shippi
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useUser(); // Get the Clerk user
+  const userId = user?.id; // Extract the user ID
+
+  console.log("Clerk User ID:", userId); // Debugging: Check if userId is available
 
   const handleCheckout = async () => {
     if (!stripe || !elements) return;
@@ -75,22 +81,30 @@ const CheckoutForm = ({ cart, shippingInfo }: { cart: Cart; shippingInfo: Shippi
       if (result.error) {
         setError(result.error.message || 'Payment failed');
       } else if (result.paymentIntent?.status === 'succeeded') {
+
         const orderResponse = await fetch('/api/orders', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             cart: cart.items,
-            shippingInfo,
-            total: cart.total,
+             shippingInfo: { ...shippingInfo, userId },
             paymentIntentId: result.paymentIntent.id,
+            totalAmount: cart.total,  // Change from `total` to `totalAmount`
+            currency: 'usd', // Ensure currency is passed (you might need to get this dynamically)
+            stripeSessionId: result.paymentIntent.id, // Use Stripe Payment Intent ID
+           
           }),
         });
 
         if (!orderResponse.ok) throw new Error('Failed to create order');
 
         const { orderId } = await orderResponse.json();
-        router.push(`/order-confirmation?orderId=${orderId}`);
+        console.log("Redirecting to success page with orderId:", orderId);
+
+      // router.push(`/success?orderId=${orderId}`);
+       router.push(`/order-confirmation?orderId=${orderId}`);
       }
+      
     } catch (error) {
       console.error('Checkout failed:', error);
       setError('Checkout failed. Please try again.');
@@ -119,7 +133,6 @@ const CheckoutForm = ({ cart, shippingInfo }: { cart: Cart; shippingInfo: Shippi
 };
 
 const CheckoutPage = () => {
-  const router = useRouter();
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
   const {
@@ -159,8 +172,7 @@ const CheckoutPage = () => {
   }, []);
 
   const onSubmit: SubmitHandler<ShippingInfo> = () => {
-    // Form submission is handled here, but payment is triggered in CheckoutForm
-    // The shippingInfo is passed to CheckoutForm below
+  
   };
 
   if (loading) {
@@ -329,7 +341,4 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
-
-
-
 
