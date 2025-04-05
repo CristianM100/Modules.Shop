@@ -39,12 +39,21 @@ export async function POST(req: NextRequest) {
 
         const newOrder = new Order({
           userId: session.metadata.userId,
-          totalAmount: session.amount_total! / 100,
+         //orderId: session.metadata.orderId,
+          items: JSON.parse(session.metadata.items ?? "[]"), // Example: stored as stringified JSON in metadata
+          shippingInfo: {
+            fullName: session.metadata.fullName,
+            address: session.metadata.address,
+            city: session.metadata.city,
+            postalCode: session.metadata.postalCode,
+            country: session.metadata.country,
+        },
           currency: session.currency,
-          status: "paid",
-          createdAt: new Date(),
+          totalAmount: session.amount_total ? session.amount_total / 100 : 0,
           stripeSessionId: session.id,
+          status: "paid",
         });
+
 
         await newOrder.save();
         console.log("✅ Order saved:", newOrder);
