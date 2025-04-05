@@ -2,7 +2,7 @@ import { UserProfile } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
 import { auth, currentUser } from "@clerk/nextjs/server";
-
+import Orders  from '@/app/orders/page'
 
 const Profile = async () => {
 
@@ -18,10 +18,9 @@ const Profile = async () => {
 
   return (
     <div className="flex flex-col items-center justify-center mt-8">
-     {/* <h1 className="text-2xl">{user?.username}</h1>
-      <UserProfile />*/}  
-      <div>Information about my account</div>
-      <div className="mt-11">Profil with my orders</div>
+      <h1 className="text-2xl">{user?.username}</h1>
+      <UserProfile /> 
+      <Orders />
     </div>
   );
 };
