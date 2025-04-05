@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
-import { useEffect, useState } from "react";
+ "use client";
+
+import { useEffect, useState } from 'react';
+import { useUser } from '@clerk/nextjs';
 
 interface Order {
   _id: string;
@@ -11,40 +12,46 @@ interface Order {
 
 const Orders = () => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const { user, isLoaded } = useUser();
 
   useEffect(() => {
-    fetch("/api/orders")
+    if (!isLoaded || !user) return;
+
+    const userId = user.id;
+
+    fetch(`/api/orders?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
           setOrders(data);
         } else {
-          setOrders([]); // Default to an empty array if the response is invalid
+          setOrders([]);
         }
       })
-      .catch(() => setOrders([])); // Handle fetch errors
-  }, []);
+      .catch(() => setOrders([]));
+  }, [user, isLoaded]);
 
   return (
     <div>
       <h1 className="m-8">My Orders</h1>
-        {Array.isArray(orders) && orders.length > 0 ? (
-          orders.map((order: any) => (
-            <div key={order._id}>
-              <p>Status: {order.status}</p>
-              <p>Total: ${order.totalAmount / 100}</p>
-              <p>Items: {order.items.map((item: any) => item.productId).join(", ")}</p>
-            </div>
-          ))
-        ) : (
-          <p>No orders found.</p>
-        )
-      }
+      {orders.length > 0 ? (
+        orders.map((order) => (
+          <div key={order._id}>
+            <p>Status: {order.status}</p>
+            <p>Total: ${order.totalAmount / 100}</p>
+            <p>Items: {order.items.map((item) => item.productId).join(', ')}</p>
+          </div>
+        ))
+      ) : (
+        <p>No orders found.</p>
+      )}
     </div>
   );
 };
 
 export default Orders;
+
+
 
 
 
