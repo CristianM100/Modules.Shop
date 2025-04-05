@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -87,12 +86,11 @@ const CheckoutForm = ({ cart, shippingInfo }: { cart: Cart; shippingInfo: Shippi
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             cart: cart.items,
-             shippingInfo: { ...shippingInfo, userId },
+            shippingInfo: { ...shippingInfo, userId },
             paymentIntentId: result.paymentIntent.id,
-            totalAmount: cart.total,  // Change from `total` to `totalAmount`
-            currency: 'usd', // Ensure currency is passed (you might need to get this dynamically)
-            stripeSessionId: result.paymentIntent.id, // Use Stripe Payment Intent ID
-           
+            totalAmount: cart.total,  
+            currency: 'usd', 
+            stripeSessionId: result.paymentIntent.id,
           }),
         });
 
