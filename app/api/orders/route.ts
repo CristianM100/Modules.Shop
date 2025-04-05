@@ -1,26 +1,32 @@
+
+ 
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Order from "@/lib/models/Order"; 
+
 
 
 export async function GET(req: NextRequest) {
   try {
     await dbConnect(); // Ensure database connection
 
-    const { searchParams } = new URL(req.url);
-    const userId = searchParams.get("userId");
+    const url = new URL(req.url, `http://${req.headers.get("host")}`);
+    const userId = url.searchParams.get("userId");
+
+    console.log("Query userId:", userId);
 
     if (!userId) {
-      return NextResponse.json([], { status: 400 });
+      return NextResponse.json({ error: "Missing userId in query" }, { status: 400 });
     }
 
     const orders = await Order.find({ userId }).lean();
     return NextResponse.json(orders.length ? orders : []);
   } catch (error) {
     console.error("Error fetching orders:", error);
-    return NextResponse.json([], { status: 500 });
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+
 
 export async function POST(req: NextRequest) {
   try {
@@ -34,17 +40,14 @@ export async function POST(req: NextRequest) {
 
     // Create order in MongoDB
     const order = await Order.create({
-      userId: body.shippingInfo.userId, // Ensure you pass userId in shippingInfo
-      orderId: body.shippingInfo.orderId,
+      userId: body.shippingInfo.userId, 
+      //orderId: body.shippingInfo.orderId,
       items: body.cart,
       shippingInfo: body.shippingInfo,
-      total: body.total,
-      paymentIntentId: body.paymentIntentId,
       status: "paid",
       stripeSessionId: body.stripeSessionId,
       currency : body.currency,
-      totalAmount: body.totalAmount,
-      
+      totalAmount: body.totalAmount
       
     });
 
