@@ -20,7 +20,8 @@ const Profile = async () => {
     <div className="flex flex-col items-center justify-center mt-8">
      {/* <h1 className="text-2xl">{user?.username}</h1>
       <UserProfile />*/}  
-      <div>Profil with my orders</div>
+      <div>Information about my account</div>
+      <div className="mt-11">Profil with my orders</div>
     </div>
   );
 };
