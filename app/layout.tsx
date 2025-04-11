@@ -34,8 +34,8 @@ export default function RootLayout({
         </ClerkLoading>
         <ClerkLoaded>
             <Header />
-              {/*<main className='grow'>{children}</main>*/}
-              {children}
+              <main className='grow'>{children}</main>
+            
         </ClerkLoaded>
       </body>
     </html>
