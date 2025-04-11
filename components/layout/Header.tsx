@@ -40,9 +40,9 @@ const Header = () => {
             <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/features'>Features</Link>
             </li>
-            <li className='text-sm font-medium uppercase tracking-wider'>
+            {/*<li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/blog'>Blog</Link>
-            </li>
+            </li>*/}
             <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/faq'>FAQ</Link>
             </li>
@@ -73,8 +73,8 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Link href="/profile">
-                    <li>Profile</li>
+                  <Link href="/orders">
+                    <li>Orders</li>
                   </Link>
                   <li className="flex items-center">
                     <UserButton />
