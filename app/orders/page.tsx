@@ -1,7 +1,9 @@
  "use client";
-
+ import Image from "next/image";
+ import Link from "next/link";
 import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
+import { formatCurrency } from "@/lib/utils";
 
 interface Order {
   _id: string;
@@ -37,9 +39,9 @@ const Orders = () => {
       {orders.length > 0 ? (
         orders.map((order) => (
           <div key={order._id}>
-            <p>Status: {order.status}</p>
-            <p>Total: ${order.totalAmount / 100}</p>
             <p>Items: {order.items.map((item) => item.productId).join(', ')}</p>
+            <p>Total: ${order.totalAmount / 100}</p>
+            <p>Status: {order.status}</p>
           </div>
         ))
       ) : (
