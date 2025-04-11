@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
     await dbConnect(); // Ensure database connection
     const body = await req.json();
 
+
     // Validate required fields
     if (!body.cart || !body.shippingInfo || !body.totalAmount || !body.paymentIntentId || !body.currency || !body.stripeSessionId) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
