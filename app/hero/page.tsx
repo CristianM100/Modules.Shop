@@ -2,11 +2,7 @@ import Link from 'next/link';
 
 export default function Hero() {
     return (
-        <div className='relative isolate h-full overflow-hidden'>
-          <div
-            aria-hidden='true'
-            className='fixed inset-0 -z-10 bg-blend-multiply'
-          />
+        <div className='relative isolate '>
           <div className='mx-auto max-w-2xl py-8 px-4 text-black sm:py-12 md:px-8 lg:py-16 xl:px-16'>
             <div className='text-center'>
               <h1 className='text-4xl font-bold tracking-tight text-black sm:text-6xl'>
