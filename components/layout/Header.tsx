@@ -73,9 +73,12 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Link href="/orders">
-                    <li>Orders</li>
-                  </Link>
+                  <ul className="list-none">
+                    <li>
+                      <Link href="/orders" className="text-black">Orders</Link>
+                    </li>
+                  </ul>
+
                   <li className="flex items-center">
                     <UserButton />
                   </li>
