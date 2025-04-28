@@ -65,11 +65,11 @@ const Header = () => {
               {!userId ? (
                 <>
                   <Link href="/sign-in">
-                    <li>Login</li>
+                    <li className="list-none">Login</li>
                   </Link>
                   <Link href="/sign-up">
-                    <li>Sign Up</li>
-                  </Link>
+                    <li className="list-none">Sign Up</li>
+                  </Link>  
                 </>
               ) : (
                 <>
