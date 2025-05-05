@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
   let event: Stripe.Event;
 
   try {
-    const rawBody = await req.text(); // Stripe requires raw body parsing
+    const rawBody = await req.text(); 
     event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
   } catch (err) {
     console.error("⚠️ Webhook signature verification failed:", err);
@@ -39,21 +39,12 @@ export async function POST(req: NextRequest) {
 
         const newOrder = new Order({
           userId: session.metadata.userId,
-         //orderId: session.metadata.orderId,
-          items: JSON.parse(session.metadata.items ?? "[]"), // Example: stored as stringified JSON in metadata
-          shippingInfo: {
-            fullName: session.metadata.fullName,
-            address: session.metadata.address,
-            city: session.metadata.city,
-            postalCode: session.metadata.postalCode,
-            country: session.metadata.country,
-        },
+          items: JSON.parse(session.metadata.items ?? "[]"), 
           currency: session.currency,
           totalAmount: session.amount_total ? session.amount_total / 100 : 0,
           stripeSessionId: session.id,
           status: "paid",
         });
-
 
         await newOrder.save();
         console.log("✅ Order saved:", newOrder);
@@ -75,5 +66,4 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// **Important:** Next.js App Router does not support `config.api.bodyParser = false`.
-// Instead, configure Stripe to send `application/json` payloads.
+

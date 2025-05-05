@@ -15,7 +15,7 @@ export async function GET(req: NextRequest, { params }: { params: { orderId: str
 
     console.log("Fetching order with ID:", orderId);
 
-    const order = await Order.findById(orderId).lean(); // lean for better performance
+    const order = await Order.findById(orderId).lean(); 
 
     if (!order) {
       console.error("Order not found in DB:", orderId);

@@ -3,7 +3,6 @@ import dbConnect from '@/lib/dbConnect';
 import Product from '@/lib/models/Product';
 
 
-
 interface Params {
   slug: string;
 }

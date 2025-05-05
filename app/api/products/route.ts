@@ -17,18 +17,3 @@ export async function GET() {
   }
 }
 
-/*
-export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const search = searchParams.get('search') || '';
-
-  await dbConnect();
-
-  const query = search
-    ? { name: { $regex: search, $options: 'i' } } // case-insensitive search
-    : { };
-
-  const products = await Product.find(query);
-
-  return NextResponse.json(products);
-}*/
