@@ -6,7 +6,7 @@ import Order from "@/lib/models/Order";
 
 export async function GET(req: NextRequest) {
   try {
-    await dbConnect(); // Ensure database connection
+    await dbConnect(); 
 
     const url = new URL(req.url, `http://${req.headers.get("host")}`);
     const userId = url.searchParams.get("userId");
@@ -25,24 +25,18 @@ export async function GET(req: NextRequest) {
   }
 }
 
-
 export async function POST(req: NextRequest) {
   try {
-    await dbConnect(); // Ensure database connection
+    await dbConnect(); 
     const body = await req.json();
 
-
-    // Validate required fields
-    if (!body.cart || !body.shippingInfo || !body.totalAmount || !body.paymentIntentId || !body.currency || !body.stripeSessionId) {
+    if (!body.cart || !body.totalAmount || !body.paymentIntentId || !body.currency || !body.stripeSessionId) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Create order in MongoDB
     const order = await Order.create({
       userId: body.shippingInfo.userId, 
-      //orderId: body.shippingInfo.orderId,
       items: body.cart,
-      shippingInfo: body.shippingInfo,
       status: "paid",
       stripeSessionId: body.stripeSessionId,
       currency : body.currency,
