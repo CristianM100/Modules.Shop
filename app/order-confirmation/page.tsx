@@ -10,7 +10,6 @@ import { formatCurrency } from '@/lib/utils'
 
 interface Order {
   userId: string,
-  //orderId: string;
   items: {
     id: string;
     quantity: number;
@@ -99,15 +98,6 @@ const OrderConfirmationPage = () => {
                 <p>{formatCurrency({ amount: order.totalAmount })}</p>
             </div>
         </div>
-
-        {/*<div className="mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Shipping Information</h2>
-          <p>{order.shippingInfo.fullName}</p>
-          <p>{order.shippingInfo.address}</p>
-          <p>
-            {order.shippingInfo.city}, {order.shippingInfo.postalCode}, {order.shippingInfo.country}
-          </p>
-        </div>*/}
 
         <div className="text-center">
           <Link href="/products" className="text-cyan-600 hover:text-cyan-500">

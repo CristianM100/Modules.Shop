@@ -48,10 +48,10 @@ const CheckoutForm = ({ cart, shippingInfo }: { cart: Cart; shippingInfo: Shippi
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { user } = useUser(); // Get the Clerk user
-  const userId = user?.id; // Extract the user ID
+  const { user } = useUser(); 
+  const userId = user?.id; 
 
-  console.log("Clerk User ID:", userId); // Debugging: Check if userId is available
+  console.log("Clerk User ID:", userId); 
 
   const handleCheckout = async () => {
     if (!stripe || !elements) return;
@@ -99,8 +99,7 @@ const CheckoutForm = ({ cart, shippingInfo }: { cart: Cart; shippingInfo: Shippi
         const { orderId } = await orderResponse.json();
         console.log("Redirecting to success page with orderId:", orderId);
 
-      // router.push(`/success?orderId=${orderId}`);
-       router.push(`/order-confirmation?orderId=${orderId}`);
+        router.push(`/order-confirmation?orderId=${orderId}`);
       }
       
     } catch (error) {
@@ -228,12 +227,6 @@ const CheckoutPage = () => {
                 <p>Subtotal</p>
                 <p>{formatCurrency({ amount: cart.sub_total })}</p>
               </div>
-              {cart.shipping !== undefined && (
-                <div className="flex justify-between text-base font-medium text-gray-900">
-                  <p>Shipping</p>
-                  <p>{formatCurrency({ amount: cart.shipping })}</p>
-                </div>
-              )}
               {cart.tax !== undefined && (
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Tax</p>

@@ -1,6 +1,5 @@
 "use client";
 
-
 import { Fragment, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -152,7 +151,7 @@ const CartSlider: React.FC<CartSliderProps> = ({ cart, cartIsLoading, open, setC
                         <p>{formatCurrency({ amount: cart?.sub_total || 0 })}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">
-                        Shipping and taxes calculated at checkout.
+                        Taxes calculated at checkout
                       </p>
 
                       {cart?.checkout_url ? (
@@ -169,7 +168,6 @@ const CartSlider: React.FC<CartSliderProps> = ({ cart, cartIsLoading, open, setC
                       ): (
                         <p className="text-sm text-gray-500 mt-4">Checkout unavailable</p>
                       )}
-
 
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

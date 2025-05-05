@@ -20,13 +20,6 @@ interface Order {
   status: string;
   totalAmount: number;
   items: OrderItem[];
-  shippingInfo: {
-    fullName: string,
-    address: string,
-    city: string,
-    postalCode: string,
-    country: string,
-  },
 }
 
 const Orders = () => {

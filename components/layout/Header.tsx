@@ -40,9 +40,6 @@ const Header = () => {
             <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/features'>Features</Link>
             </li>
-            {/*<li className='text-sm font-medium uppercase tracking-wider'>
-              <Link href='/blog'>Blog</Link>
-            </li>*/}
             <li className='text-sm font-medium uppercase tracking-wider'>
               <Link href='/faq'>FAQ</Link>
             </li>
