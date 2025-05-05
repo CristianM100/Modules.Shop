@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use server'
 
-//import User from "@/lib/models/user.modal";
-import User from "@/modals/user.modal";
-//import User from "@/modals/user.modal";
-//import { connect } from "@/db";
+import User from "@/lib/models/user.modal";
 import dbConnect from "@/lib/dbConnect"
 
 
