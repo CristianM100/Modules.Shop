@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
+//import Stripe from "stripe";
+import { stripe } from '@/lib/stripe'; // Adjust path as needed
 
-
+/*
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-02-24.acacia',
-});
+});*/
 
 export async function POST(request: Request) {
   try {
