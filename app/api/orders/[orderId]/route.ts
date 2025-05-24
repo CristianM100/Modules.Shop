@@ -1,13 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
-import dbConnect from "@/lib/dbConnect";
-import Order from "@/lib/models/Order";
+import { NextRequest, NextResponse } from 'next/server';
+import dbConnect from '@/lib/dbConnect';
+import Order from '@/lib/models/Order';
+
 
 
 export async function GET(req: NextRequest, { params }: { params: { orderId: string } }) {
   try {
     await dbConnect();
 
-    const { orderId } = await params;
+    const { orderId } = await params; 
 
     if (!orderId) {
       return NextResponse.json({ error: "Order ID is required" }, { status: 400 });
@@ -15,7 +16,7 @@ export async function GET(req: NextRequest, { params }: { params: { orderId: str
 
     console.log("Fetching order with ID:", orderId);
 
-    const order = await Order.findById(orderId).lean(); 
+    const order = await Order.findById(orderId).lean();
 
     if (!order) {
       console.error("Order not found in DB:", orderId);
@@ -28,3 +29,4 @@ export async function GET(req: NextRequest, { params }: { params: { orderId: str
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+
