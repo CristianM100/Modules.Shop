@@ -96,21 +96,11 @@ yarn start
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
-## Project Structure
 
-```
-modules.shop/
-├── app/              # Next.js app directory
-├── components/       # React components
-├── lib/             # Utility functions and configurations
-├── actions/         # Server actions
-├── public/          # Static assets
-└── ...
-```
 
 ## Team Members
 
-- **Cristian Marinescu** - Lead Developer
+- **Cristian Marinescu** - Developer
 
 ## Contributing
 
