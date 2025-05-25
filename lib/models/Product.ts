@@ -1,5 +1,6 @@
 import { Schema, Document, models, model } from 'mongoose';
 
+
 interface IProduct extends Document {
   name: string;
   price: number;

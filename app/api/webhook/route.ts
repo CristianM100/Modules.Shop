@@ -3,8 +3,9 @@ import Stripe from "stripe";
 import dbConnect from "@/lib/dbConnect"; 
 import Order from "@/lib/models/Order"; 
 
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: "2025-02-24.acacia",
+  apiVersion: "2025-04-30.basil",
 });
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;

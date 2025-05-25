@@ -1,6 +1,4 @@
 import type { Config } from "tailwindcss";
-const plugin = require('tailwindcss/plugin')
-
 
 export default {
   content: [

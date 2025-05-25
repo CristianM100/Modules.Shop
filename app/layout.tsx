@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import { dark } from "@clerk/themes";
@@ -34,7 +35,7 @@ export default function RootLayout({
         <ClerkLoaded>
             <Header />
               <main className='grow'>{children}</main>
-            
+            <Footer />
         </ClerkLoaded>
       </body>
     </html>

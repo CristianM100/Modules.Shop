@@ -12,6 +12,7 @@ import { formatCurrency } from '@/lib/utils';
 import { Blinker } from '@/components/ui/Loading';
 import { useUser } from "@clerk/nextjs";
 
+
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 interface CartItem {

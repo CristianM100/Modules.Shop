@@ -5,7 +5,6 @@ import { createUser } from "@/actions/user.action";
 import { NextResponse } from "next/server";
 
 
-
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
@@ -36,15 +35,12 @@ export async function POST(req: Request) {
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
-
   console.log("Webhook payload received:", payload);
   console.log("Body after JSON.stringify:", body);
 
   const wh = new Webhook(WEBHOOK_SECRET);
 
   let evt: WebhookEvent;
-
-
 
   try {
     evt = wh.verify(body, {

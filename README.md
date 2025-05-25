@@ -1,16 +1,18 @@
 # Modules Shop
 
-A modern e-commerce platform built with Next.js, featuring a sleek user interface and robust functionality.
+An e-commerce platform built with Next.js, featuring a modern user interface and robust functionality.
+
 
 ## Features
 
-- User authentication and authorization using Clerk
 - Product browsing and search
 - Shopping cart functionality
+- User authentication and authorization using Clerk
 - Secure payment processing with Stripe
 - Responsive design with Tailwind CSS
 - MongoDB database integration
 - TypeScript for type safety
+
 
 ## Tech Stack
 
@@ -23,12 +25,14 @@ A modern e-commerce platform built with Next.js, featuring a sleek user interfac
 - **Form Handling**: React Hook Form
 - **UI Components**: Headless UI, Heroicons
 
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 - Node.js (Latest LTS version recommended)
 - npm or yarn
 - MongoDB (local or Atlas instance)
+
 
 ## Environment Variables
 
@@ -46,6 +50,7 @@ MONGODB_URI=your_mongodb_connection_string
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 STRIPE_SECRET_KEY=your_stripe_secret_key
 ```
+
 
 ## Installation
 
@@ -71,6 +76,7 @@ yarn dev
 
 The application will be available at `http://localhost:3000`
 
+
 ## Building for Production
 
 To create a production build:
@@ -89,6 +95,7 @@ npm run start
 yarn start
 ```
 
+
 ## Development
 
 - `npm run dev` - Start development server with Turbopack
@@ -97,10 +104,10 @@ yarn start
 - `npm run lint` - Run ESLint
 
 
-
 ## Team Members
 
-- **Cristian Marinescu** - Developer
+- *Cristian Marinescu*
+
 
 ## Contributing
 
@@ -109,6 +116,7 @@ yarn start
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
 
 ## License
 
